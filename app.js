@@ -9,6 +9,12 @@ app.use(express.urlencoded({extended:true}))
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'views'))   
 const db=require('./config/mongoose-connection')
+require("dotenv").config();
+const flash = require('express-flash');
+const session = require('express-session');
+
+app.use(session({ secret:process.env.EXPRESS_SESSION_SECRET, resave: false, saveUninitialized: false }));
+app.use(flash());
 
 
 
